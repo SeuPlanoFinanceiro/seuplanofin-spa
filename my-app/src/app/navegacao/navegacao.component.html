@@ -1,30 +1,38 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
+<div class="container">
+  <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Olá Diego!</h1>
+    <h1 class="centered">Olá Diego!</h1>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-
-      <div>
-        <button mat-icon-button><mat-icon>close</mat-icon><span>Fechar</span></button>
-        <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
-        <h3>Menu</h3>
-      </div>
-
-      <mat-nav-list>
-        <a mat-list-item routerLink=".">Dados cadastrais</a>
-        <a mat-list-item routerLink=".">Plano de serviço</a>
-        <a mat-list-item routerLink=".">Fale conosco</a>
-        <a mat-list-item routerLink=".">Sair do sistema</a>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="true" fixedTopGap="0">
+      <mat-grid-list cols="2" rowHeight="55px">
+        <mat-grid-tile colspan="1">
+          <button mat-icon-button id="bt-close" (click)="snav.toggle()">
+            <mat-icon class="bt-red-icon">close</mat-icon></button>
+          <label class="bt-red-icon" for="btn-close">Fechar</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <h3>Menu</h3>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-nav-list *ngFor="let menu of menus">
+        <a mat-list-item routerLink=".">{{menu}}</a>
       </mat-nav-list>
     </mat-sidenav>
-
     <mat-sidenav-content>
-      <p></p>
+      <button mat-icon-button id="bt-visibility">
+        <mat-icon id="bt-visibility-icon">visibility_off</mat-icon></button>
+      <label for="btn-visibility">Ocultar</label>
+      <!-- <mat-grid-list>
+        <mat-grid-tile *ngFor="let funcionalidade of funcionalidades"> -->
+          <app-card *ngFor="let funcionalidade of funcionalidades" [funcionalidade]="funcionalidade"></app-card>
+        <!-- </mat-grid-tile>
+      </mat-grid-list> -->
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <p></p>
+  <p id="rodape"></p>
 </div>

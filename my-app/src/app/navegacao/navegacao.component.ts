@@ -2,14 +2,18 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {NgIf, NgFor} from '@angular/common';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgIf, NgFor } from '@angular/common';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { CardComponent } from '../card/card.component';
+import { Funcionalidade } from '../domain/funcionalidade.model';
 
 @Component({
   selector: 'app-navegacao',
@@ -23,23 +27,23 @@ import {NgIf, NgFor} from '@angular/common';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatGridListModule,
     NgFor,
+    MatCardModule,
+    CardComponent,
   ],
 })
 export class NavegacaoComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({length: 3},() => `Dados cadastrais`);
+  menus: string[] =["Dados cadastrais","Plano de serviço","Fale conosco","Sair do sistema"];
 
-  fillerContent = Array.from(
-    {length: 5},
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  );
+  funcionalidades: Funcionalidade[] =
+    [
+      { id: "1", nome: "Despesas", valor: "4.293,94" },
+      { id: "2", nome: "Receitas", valor: "5.445,70" },
+      { id: "3", nome: "Saldo", valor: "1.151,76" }
+    ];
 
   private _mobileQueryListener: () => void;
 

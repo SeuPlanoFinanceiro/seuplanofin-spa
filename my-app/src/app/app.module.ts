@@ -10,8 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavegacaoComponent } from './navegacao/navegacao.component';
+import { MatCardModule } from '@angular/material/card';
 import { RodapeComponent } from './rodape/rodape.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +24,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
-    ToolbarComponent,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    NavegacaoComponent
+    NavegacaoComponent,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
